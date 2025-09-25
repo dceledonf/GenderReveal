@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gender Reveal</title>
+    <title>Gender Reveal - Gloria Guerra</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +27,17 @@
         @media (min-width: 1024px) {
             .section-1 {
                 background-image: url('assets/desktop.png');
+            }
+            /* Ajustes solo para Desktop */
+            #hero-message {
+                font-size: 2.25rem; /* ~36px */
+                line-height: 1.25;
+            }
+            #countdown-label {
+                font-size: 1rem; /* ~16px */
+            }
+            #countdown .montserrat {
+                font-size: 2rem; /* ~32px */
             }
         }
         
@@ -73,13 +84,13 @@
     <section class="section-1 min-h-[100svh] relative pb-6">
         <!-- Mensaje superior izquierdo con animación -->
         <div class="absolute top-4 left-4 w-1/2 pr-4">
-            <p class="montserrat text-lg md:text-xl lg:text-2xl font-medium animate__animated animate__fadeInDown" style="color: #8B7355;">
-                Acompáñanos en este día especial
+            <p id="hero-message" class="montserrat text-lg md:text-xl lg:text-2xl font-medium animate__animated animate__fadeInDown" style="color: #8B7355;">
+                Acompáñanos<span class="hidden lg:inline"><br></span> en este día<span class="hidden lg:inline"><br></span> especial
             </p>
         </div>
         <!-- Countdown en esquina inferior derecha -->
         <div class="absolute right-4 text-right animate__animated animate__fadeInUp" style="bottom: max(0.75rem, env(safe-area-inset-bottom));">
-            <div class="montserrat text-xs font-medium mb-1" style="color: #8B7355;">FALTAN:</div>
+            <div id="countdown-label" class="montserrat text-xs font-medium mb-1" style="color: #8B7355;">FALTAN:</div>
             <div id="countdown" class="flex space-x-2">
                 <div id="days" class="montserrat text-xl font-medium" style="color: #8B7355;">00</div>
                 <div class="montserrat text-xl font-medium" style="color: #8B7355;">:</div>
@@ -460,4 +471,3 @@
     </footer>
 </body>
 </html>
-
