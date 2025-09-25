@@ -60,7 +60,7 @@
 <body class="bg-white">
     <!-- Alerta superior global (oculta por defecto) -->
     <div class="fixed top-2 inset-x-0 flex justify-center z-50 pointer-events-none">
-        <div id="alert-top" class="hidden pointer-events-auto montserrat text-xs px-3 py-2 rounded-lg shadow border bg-white/90 animate__animated" style="border-color:#8B7355; color:#8B7355;"></div>
+        <div id="alert-top" class="hidden pointer-events-auto montserrat text-sm px-4 py-3 rounded-xl shadow-lg border-2 animate__animated" style="background-color:#8B7355; border-color:#8B7355; color:#ffffff;"></div>
     </div>
     <!-- SECCIÓN 1 (HERO) -->
     <section class="section-1 min-h-[100svh] relative pb-6">
@@ -386,18 +386,22 @@
             // Alertas: superior y en encuesta
             const alertTop = document.getElementById('alert-top');
             const message = '¡Enviado! Gracias por confirmar tu asistencia.';
-            // Alerta superior con animación llamativa
+            // Alerta superior con animación más llamativa
             alertTop.textContent = message;
             alertTop.classList.remove('hidden');
-            alertTop.classList.remove('animate__fadeOutUp', 'animate__fadeInDown', 'animate__heartBeat');
+            alertTop.classList.remove('animate__fadeOutUp', 'animate__fadeInDown', 'animate__heartBeat', 'animate__tada', 'animate__shakeX');
             alertTop.classList.add('animate__fadeInDown');
-            // pulso breve para llamar atención
+            // combo de atención
             setTimeout(() => {
-                alertTop.classList.add('animate__heartBeat');
-            }, 300);
+                alertTop.classList.add('animate__tada');
+            }, 250);
+            setTimeout(() => {
+                alertTop.classList.remove('animate__tada');
+                alertTop.classList.add('animate__shakeX');
+            }, 850);
             // salida automática
             setTimeout(() => {
-                alertTop.classList.remove('animate__heartBeat', 'animate__fadeInDown');
+                alertTop.classList.remove('animate__shakeX', 'animate__fadeInDown');
                 alertTop.classList.add('animate__fadeOutUp');
                 alertTop.addEventListener('animationend', () => {
                     alertTop.classList.add('hidden');
