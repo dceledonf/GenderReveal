@@ -258,8 +258,9 @@
                     </div>
 
                     <!-- Botón de enviar -->
-                    <div id="submit-row" class="text-center">
+                    <div id="submit-row" class="text-center space-x-2">
                         <button id="submit-button" class="montserrat text-sm font-medium px-4 py-2 rounded-lg" style="background-color: #8B7355; color: white;">Enviar</button>
+                        <button id="decline-button" class="montserrat text-sm font-medium px-4 py-2 rounded-lg border" style="border-color:#8B7355; color:#8B7355; background-color: transparent;">No podré asistir</button>
                     </div>
                 </div>
             </div>
@@ -304,6 +305,7 @@
         const boyButton = document.getElementById('boy-button');
         const girlButton = document.getElementById('girl-button');
         const submitButton = document.getElementById('submit-button');
+        const declineButton = document.getElementById('decline-button');
         const predictionSection = document.getElementById('prediction-section');
         const thankyouMessage = document.getElementById('thankyou-message');
         const nameField = document.getElementById('name-field');
@@ -408,6 +410,38 @@
                     alertTop.classList.remove('animate__fadeOutUp');
                 }, { once: true });
             }, 2500);
+        });
+
+        // No podré asistir: mostrar solo alerta y ocultar formulario (sin encuesta)
+        declineButton.addEventListener('click', () => {
+            nameField.classList.add('hidden');
+            guestsField.classList.add('hidden');
+            submitRow.classList.add('hidden');
+            // Agradecimiento distinto
+            const alertTop = document.getElementById('alert-top');
+            const message = 'Gracias por avisar. ¡Te veremos en la próxima!';
+            alertTop.textContent = message;
+            alertTop.classList.remove('hidden');
+            alertTop.classList.remove('animate__fadeOutUp', 'animate__fadeInDown', 'animate__tada', 'animate__shakeX');
+            alertTop.classList.add('animate__fadeInDown');
+            setTimeout(() => { alertTop.classList.add('animate__tada'); }, 250);
+            setTimeout(() => {
+                alertTop.classList.remove('animate__tada');
+                alertTop.classList.add('animate__shakeX');
+            }, 850);
+            setTimeout(() => {
+                alertTop.classList.remove('animate__shakeX', 'animate__fadeInDown');
+                alertTop.classList.add('animate__fadeOutUp');
+                alertTop.addEventListener('animationend', () => {
+                    alertTop.classList.add('hidden');
+                    alertTop.classList.remove('animate__fadeOutUp');
+                }, { once: true });
+            }, 2500);
+
+            // Recargar a los 3 segundos y volver al hero (arriba)
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
         });
     </script>
 
